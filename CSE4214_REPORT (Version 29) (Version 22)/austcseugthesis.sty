@@ -1,0 +1,353 @@
+\RequirePackage{graphicx}
+%\RequirePackage{algorithmic}
+%\RequirePackage{algorithm}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage[ruled,vlined,linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+
+\SetKwInput{KwInput}{Input}                % Set the Input
+\SetKwInput{KwOutput}{Output}              % set the Output
+%\SetKwInput{KwOutput}{Output}      
+\newcounter{func}
+\newenvironment{func}[1][htb]
+  {\renewcommand{\algorithmcfname}{Function}% Update algorithm name
+   \let\c@algocf\c@func% Update algorithm counter
+   \begin{algorithm}[#1]%
+  }{\end{algorithm}}
+
+
+
+
+\RequirePackage{amsthm}
+\RequirePackage{amsmath}
+\RequirePackage[a4paper,left=25.0mm, right=25.0mm, top=25.0mm, bottom=25.0mm]{geometry}
+\RequirePackage{times}
+\RequirePackage{svg}
+\RequirePackage{cite}
+\RequirePackage{url}
+\RequirePackage{listings}
+\RequirePackage[final, colorlinks, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+% Prevent math from being upcased
+% http://tex.stackexchange.com/questions/46525/preventing-makeuppercase-from-affecting-mathematics
+\RequirePackage{textcase}
+
+% Definition macros
+\def\cse{Department of Computer Science and Engineering}
+\def\aust{Ahsanullah University of Science and Technology}
+
+% sets spacing between paragraphs
+\parskip 2.5mm           
+%chapter style
+%Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+%better than rejne
+%\usepackage[Sonny]{fncychap}
+%\usepackage[Lenny]{fncychap}
+%OK
+%\usepackage[Glenn]{fncychap}
+%\usepackage[Conny]{fncychap}
+%Ok
+%\usepackage[Rejne]{fncychap}
+%better than sonny and rejne
+%\usepackage[Bjarne]{fncychap}
+
+%\usepackage[Bjornstrup]{fncychap}
+
+% Clever referencing
+\RequirePackage{cleveref}
+
+\crefname{func}{function}{functions}
+\Crefname{func}{function}{functions}
+% Caption setup
+\RequirePackage{caption} 
+\captionsetup[table]{skip=2.50mm}
+
+
+% 1.5 spacing
+\RequirePackage{setspace}
+\onehalfspacing
+\RequirePackage{xspace}
+% sets leading space for paragraphs
+\parindent 0.0mm		  
+
+%font
+
+\usepackage[T1]{fontenc}
+\usepackage[bitstream-charter]{mathdesign}
+%\usepackage[demo]{graphicx}
+%Table of contents styling%
+
+
+% Read and store student names in DB
+\RequirePackage{datatool}
+\DTLloaddb[noheader]{ThesisStudents}{parameters/students.txt}
+\DTLloaddb[noheader]{Supervisor}{parameters/supervisor.txt}
+\DTLloaddb[noheader]{Head}{parameters/head.txt}
+
+
+% Thesis parameters
+\def\projecttitle{\input{parameters/projecttitle.txt}\unskip}
+\def\projectdate{\input{parameters/projectdate.txt}\unskip}
+\def\worktype{\input{parameters/worktype.txt}\unskip}
+% Thesis title page
+
+\def\thesiscoverpage{
+   \thispagestyle{empty}
+  \begin{center}
+  \vspace*{2cm}
+    \textbf{{\Large\projecttitle}}
+    \vspace*{\stretch{2}}
+     \begin{center}
+     \iffalse
+    
+\fi
+    
+             \end{center}
+         \vspace*{\stretch{5}}
+    %{\large Submitted by}
+    \\\ \\
+    \begin{table}[!htp]
+      \centering
+\begin{tabular}{lc}
+ \DTLforeach{ThesisStudents}{\StudentName=Column1,\StudentID=Column2}{\textbf{\StudentName}&\ \ \ \textbf{\StudentID}\\}
+     
+ 
+ 
+ \end{tabular}
+\end{table}
+
+\vspace*{\stretch{3}}
+{\textbf{Project Report}}\\
+{\textbf{Course ID: CSE 4214}}\\
+{\textbf{Course Name: Pattern Recognition Lab}}\\
+{\textbf{Semester: Spring 2021}}\\
+
+    \vspace*{\stretch{4}}{\tiny.}\vspace*{\stretch{2}}
+    \includegraphics[width=30mm]{inputs/austlogo}\\
+    \textbf{\large\cse}\\
+    \textbf{\aust}\\
+    \medskip
+    Dhaka, Bangladesh\\
+    \bigskip
+    \vspace*{\stretch{1}}
+    \projectdate
+  
+   
+      \end{center}
+    \cleardoublepage
+}
+
+\def\projecttitlepage{
+   \thispagestyle{empty}
+  \begin{center}
+  \vspace*{2cm}
+    \textbf{{\Large\projecttitle}}
+    \vspace*{\stretch{2}}
+     \begin{center}
+    
+    
+             \end{center}
+         \vspace*{\stretch{5}}
+    {\large Submitted by}\\\ \\
+    \begin{table}[!htp]
+      \centering
+\begin{tabular}{lc}
+ \DTLforeach{ThesisStudents}{\StudentName=Column1,\StudentID=Column2}{\textbf{\StudentName}&\ \ \ \textbf{\StudentID}\\}
+     
+ 
+ 
+ \end{tabular}
+\end{table}
+
+\vspace*{\stretch{3}}
+    {\large Submitted To}\\
+    \vspace*{\stretch{1}}
+    \DTLforeach{Supervisor}{\SupervisorName=Column1,\SupervisorDesignation=Column2}\\
+    {\textbf{Faisal Muhammad Shah}}\\
+    {\textbf{Sajib Kumar Saha Joy},}\\
+    Department of Computer Science and Engineering\\
+Ahsanullah University of Science and Technology
+
+    \vspace*{\stretch{4}}{\tiny.}\vspace*{\stretch{2}}
+    \includegraphics[width=30mm]{inputs/austlogo}\\
+    \textbf{\large\cse}\\
+    \textbf{\aust}\\
+    \medskip
+    Dhaka, Bangladesh\\
+    \bigskip
+    \vspace*{\stretch{1}}
+    \projectdate
+  
+   
+      \end{center}
+
+}
+
+
+
+
+
+% Abstract
+\def\thesisabstract{%
+  \renewcommand{\abstractname}{\textbf{{\Large ABSTRACT}}}
+  \addcontentsline{toc}{chapter}{\textbf{\normalsize{\emph{ABSTRACT}}}}
+  \begin{abstract}\thispagestyle{plain}
+    \@input {inputs/abstract.tex}
+  \end{abstract}
+    
+}
+% Inclusion of lof and lot in toc
+\RequirePackage[nottoc,notbib]{tocbibind}
+
+%--------------------
+%Page header style
+\makeatletter
+    \let\stdchapter\chapter
+    \renewcommand*\chapter{%
+    \@ifstar{\starchapter}{\@dblarg\nostarchapter}}
+    \newcommand*\starchapter[1]{%
+        \stdchapter*{#1}
+        \thispagestyle{fancy}
+        \markboth{\MakeUppercase{#1}}{}
+    }
+    \def\nostarchapter[#1]#2{%
+        \stdchapter[{#1}]{#2}
+        \thispagestyle{fancy}
+    }
+\makeatother
+ 
+\setlength{\headheight}{15pt} 
+%------------------
+%Table of content font
+\RequirePackage{tocloft}
+%\RequirePackage{subfigure}
+%\usepackage[subfigure]{tocloft}
+\RequirePackage{subcaption}
+
+\renewcommand{\cfttoctitlefont} % ToC title
+             {\usefont{T1}{qhv}{b}{n}\selectfont\huge}
+\renewcommand{\cftchapfont} % chapter titles
+             {\usefont{T1}{qhv}{b}{n}\selectfont}
+\renewcommand{\cftsecfont} % section titles
+             {\usefont{T1}{bch}{m}{n}\selectfont}
+\renewcommand{\cftsubsecfont} % subsection titles
+             {\usefont{T1}{bch}{m}{n}\selectfont} 
+\renewcommand{\cftchappagefont} % chapter page numbers
+             {\usefont{T1}{bch}{b}{n}\selectfont}
+\renewcommand{\cftsecpagefont} % section page numbers
+             {\cftsecfont} 
+\renewcommand{\cftsubsecpagefont} % subsection page numbers
+             {\cftsubsecfont}
+\RequirePackage{etoolbox}
+\newtoggle{suppress@lof}
+\newtoggle{suppress@lot}
+\newtoggle{suppress@lo@}
+
+\def\suppresslistoffigures{\global\toggletrue{suppress@lof}}
+\def\suppresslistoftables{\global\toggletrue{suppress@lot}}
+\def\suppresslistofalgorithms{\global\toggletrue{suppress@lo@}}
+
+%TOC STYLE%
+
+%__________________________
+
+\def\listsandtoc{
+  % Table of contents
+  \tableofcontents
+
+  % List of figures, if not suppressed
+  \iftoggle{suppress@lof}{\relax}{\cleardoublepage
+    
+  \listoffigures}
+
+  % List of tables, if not suppressed
+  \iftoggle{suppress@lot}{\relax}{\cleardoublepage
+    
+  \listoftables}
+
+  % List of algorithms, if not suppressed
+  %\iftoggle{suppress@lo@}{\relax}{\cleardoublepage
+  %  \addcontentsline{toc}{chapter}{\listalgorithmname}
+  %  \listofalgorithms}
+}
+
+\def\mystartingmaterials{
+
+  \pagenumbering{Alpha}
+  \thesiscoverpage
+  \projecttitlepage
+
+
+  \cleardoublepage
+  \pagenumbering{roman}
+  \setcounter{page}{1}
+ 
+  \thesiscandidatesdeclaration
+
+  \cleardoublepage
+  \thesiscertificationpage
+
+  \cleardoublepage
+  \thesisacknowledgement
+
+  \cleardoublepage
+  \thesisabstract
+  
+  \cleardoublepage
+     \listsandtoc
+  \cleardoublepage
+
+  \pagenumbering{arabic}
+  \setcounter{page}{1}
+  \pagestyle{fancy}
+  
+}
+
+\RequirePackage{fancyhdr}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.250mm}
+\renewcommand{\footrulewidth}{0.0mm}
+\fancyheadoffset[R]{0.075\textwidth}
+\fancyhead[L]{\slshape \rightmark}
+\fancyhead[R]{\textbf{\thepage}}
+
+
+% For index creation
+\RequirePackage{imakeidx}
+
+% Version information at the end
+\RequirePackage[nofancy,notoday]{rcsinfo}
+\rcsInfo $Id: austcseugthesis.sty,v 1.4 2019/04/20 17:06:11 imtiaz Exp $
+\RequirePackage{datetime}
+
+\AtEndDocument{%
+  \clearpage
+  \pagestyle{plain}
+  
+  \begingroup
+  
+  \flushright
+
+  \vspace*{0.0mm}
+  \vfill\vfill\vfill\vfill\vfill
+  \sffamily
+
+  Generated using Undegraduate Thesis \LaTeX\xspace Template,
+  Version~\rcsInfoRevision. \cse, \aust, Dhaka, Bangladesh.
+
+  \bigskip
+
+  \settimeformat{ampmtime}
+
+  This project report was generated on~\today\xspace at~\currenttime.
+
+  \vfill
+
+  \endgroup}
+
+
+
+\endinput
+

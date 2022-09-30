@@ -1,0 +1,56 @@
+\documentclass[12pt,notitlepage,oneside]{report}
+\setcounter{tocdepth}{3} % show also subsections in toc
+\setcounter{secnumdepth}{3} % show also subsections number in toc
+\usepackage{mathtools}
+
+\usepackage{austcseugthesis}
+
+% For index creation, comment this out if you do not want to create an
+% index
+%\makeindex[intoc]
+\usepackage{blindtext}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{stackengine}
+\usepackage{xurl}
+\usepackage{minted}
+
+\begin{document}
+\mystartingmaterials
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%EDIT BELOW THIS LINE
+%\input{filename} will include all the contents of file in the main book.%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{introduction}
+
+\input{literature_review}
+
+\input{data-processing}
+
+\input{Methodology}
+
+\input{experiments-and-results}
+
+\input{conclusion-and-future-work}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{ieeetr} %% IEEE transaction style
+% \bibliographystyle{acm} %% ACM style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%DONE
+%do not comment the next line.
+%DO NOT EDIT THE bibliography.tex file
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{bibliography.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%index and appendix sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Index, comment this out if you do not want to create an index
+%\printindex
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Sample appendix section
+%Comment out algorithm and/or code files if not needed
+%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\end{document}
